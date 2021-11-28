@@ -26,6 +26,7 @@ The project proposal can be found [here](https://github.com/llDev-Rootll/Autonom
 The quad chart can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Quad_Chart.pdf).
 
 The overall backlog table and the tables for each sprints can be found [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1860513107).
+
 The sprint planning notes can be found [here](https://docs.google.com/document/d/1wy9xlAPdjao29AV2lVo_EQJV9MCoEYegYT7aFkh7owY/edit).
 
 
@@ -35,7 +36,7 @@ The following shows the activity diagram for our proposed schema :
 
 *Fig 1 :  Activity Diagram*
 
-The corresponding class diagram can be found here.
+The corresponding class diagram can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/UML/initial/Mower_Class_Diagram.pdf).
 
 ## Phase 1
 
