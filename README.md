@@ -30,7 +30,7 @@ The sprint planning notes can be found here.
 
 ## System Architecture 
 The following shows the activity diagram for our proposed schema : 
-<img alt="activity" src="assets/activity_diag.png" width="75%" />
+<img alt="activity" src="assets/activity_diag.png" width="50%" />
 
 *Fig 1 :  Activity Diagram*
 
