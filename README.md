@@ -12,6 +12,7 @@ A ROS base Autonomous Lawn Mower.
 
 ## Introduction
 With the sprawl of the urbanized communities, today's houses have large lawns that demand constant upkeep. Such a manual an repetitive task is not only laborious but also taxing and truly unnecessary. Robot are great at performing complex repetitive tasks autonomously, and as this this is a great problem that can be solved using autonomous systems.
+
 We propose to implement a robust robotic system in Gazebo and ROS inspired by an autonomous lawn mower called “Automower” which is capable of mowing a desired lawn area, following a predefined pattern to cut the lawn and dynamically avoid obstacles. This product would serve a long term project for ACME's robotics division and would be an ideal way to utilize the recent capital infusion in the department. Assuming an environment map known beforehand, our robot uses the TurtleBot robot as its base platform as it follows its trajectory for mowing the lawn. 
 
 Our system is built using C++ and will leverage the ROS Navigation stack for performing autonomous navigation.
