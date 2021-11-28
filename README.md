@@ -1,3 +1,4 @@
+
 # Autonomous Lawn Mower
 [![Build Status](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower.svg?branch=master)](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower)
 [![Coverage Status](https://coveralls.io/repos/github/llDev-Rootll/Autonomous_Lawn_Mower/badge.svg?branch=master)](https://coveralls.io/github/llDev-Rootll/Autonomous_Lawn_Mower?branch=master)
@@ -20,11 +21,11 @@ Our system is built using C++ and will leverage the ROS Navigation stack for per
 ## Project Collaterals
 The Agile Iterative Process will be used for the development of this system consisting of two sprints.
 
-The project proposal can be found here.
+The project proposal can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Autonomous_Lawn_Mower-Proposal.pdf).
 
-The quad chart can be found here.
+The quad chart can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Quad_Chart.pdf).
 
-The overall backlog table and the tables for each sprints can be found here.
+The overall backlog table and the tables for each sprints can be found [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1860513107).
 The sprint planning notes can be found [here](https://docs.google.com/document/d/1wy9xlAPdjao29AV2lVo_EQJV9MCoEYegYT7aFkh7owY/edit).
 
 
