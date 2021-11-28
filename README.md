@@ -4,7 +4,7 @@
 [![Coverage Status](https://coveralls.io/repos/github/llDev-Rootll/Autonomous_Lawn_Mower/badge.svg?branch=master)](https://coveralls.io/github/llDev-Rootll/Autonomous_Lawn_Mower?branch=master)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-A C++ module to detect and track humans which outputs location information directly in a robot's reference frame.
+A ROS based robot for autonomous lawn mowing.
 
 ## Authors
 
