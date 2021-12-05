@@ -13,7 +13,7 @@ class NavigationUtils {
     public:
      std::vector<double> getCurrentLocation();
 
-     void setDesiredGoal(move_base_msgs::MoveBaseGoal goal, std::vector<double>);
+     void setDesiredGoal(move_base_msgs::MoveBaseGoal goal, std::vector<double> position, geometry_msgs::Quaternion qMsg);
     
      void sendGoal(move_base_msgs::MoveBaseGoal goal, 
      actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient);

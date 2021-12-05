@@ -46,9 +46,16 @@ void LawnMower::mow() {
 LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   node_h = n;
   path_to_waypoints = path;
+  move_base_msgs::MoveBaseGoal goal;
+  NavigationUtils navUtils;
+  geometry_msgs::Quaternion qMsg;
+  double dummy_theta;
+  std::vector<double> dummy_pose = {0,0};
+  qMsg = navUtils.convertToQuaternion(dummy_theta);
+  navUtils.setDesiredGoal(goal, dummy_pose, qMsg);
   ros::spin();
-
 }
+
 int main(int argc, char **argv) {
   ros::init(argc, argv, "alm");
   ros::NodeHandle ros_node_h;

@@ -3,6 +3,7 @@
 #define INCLUDE_LawnMower_H_
 #include <string>
 #include <sstream>
+#include <vector>
 #include "ros/ros.h"
 #include <NavigationUtils.h>
 class LawnMower {
