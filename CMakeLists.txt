@@ -17,8 +17,8 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(alm src/LawnMower.cpp src/NavigationUtils.cpp)
-target_link_libraries(alm ${catkin_LIBRARIES})
+add_executable(mow src/LawnMower.cpp src/NavigationUtils.cpp)
+target_link_libraries(mow ${catkin_LIBRARIES})
 
 
 
