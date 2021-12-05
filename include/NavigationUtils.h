@@ -27,7 +27,7 @@ class NavigationUtils {
      std::vector<std::vector<double>>  getPointsFromFile(std::string path);
 
      bool returnToHome(move_base_msgs::MoveBaseGoal goal, 
-     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient);
+     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> &actionClient);
 };
 
 #endif  // INCLUDE_NavigationUtils_H_

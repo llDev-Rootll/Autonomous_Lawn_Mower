@@ -55,6 +55,7 @@ LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   qMsg = navUtils.convertToQuaternion(dummy_theta);
   navUtils.setDesiredGoal(goal, dummy_pose, qMsg);
   navUtils.sendGoal(goal, actionClient);
+  bool success_flag = navUtils.checkGoalReach(actionClient);
   ros::spin();
 }
 

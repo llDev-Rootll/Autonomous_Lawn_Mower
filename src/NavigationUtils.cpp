@@ -30,7 +30,16 @@ geometry_msgs::Quaternion NavigationUtils::convertToQuaternion(double theta) {
 }
 
 bool NavigationUtils::checkGoalReach(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
-
+ actionClient.waitForResult();
+ bool success = false;
+    if (actionClient.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
+      ROS_INFO("You have reached goal..");
+      success = true;
+    } else {
+      ROS_INFO("The base failed to reach goal..");
+      success = false;
+    }
+    return success;
 }
 
 bool NavigationUtils::emergencyStop() {
