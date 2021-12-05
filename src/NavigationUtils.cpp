@@ -16,7 +16,8 @@ void NavigationUtils::setDesiredGoal(move_base_msgs::MoveBaseGoal goal, std::vec
 
 void NavigationUtils::sendGoal(move_base_msgs::MoveBaseGoal goal, 
 actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
-
+  ROS_INFO("Move robot: x= %f, y= %f, yaw= %f", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y, goal.target_pose.pose.orientation);
+  actionClient.sendGoal(goal);
 }
 
 geometry_msgs::Quaternion NavigationUtils::convertToQuaternion(double theta) {
