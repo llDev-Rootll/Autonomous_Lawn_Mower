@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+	<node pkg="alm" type="test_mow" name="test_node" output="screen"> </node>
+</launch>
+

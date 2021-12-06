@@ -1,0 +1,5 @@
+
+  <launch>
+  <!-- src node -->
+  <node name="mower_node" pkg="alm" output = "screen" type="mow"/>
+</launch>
