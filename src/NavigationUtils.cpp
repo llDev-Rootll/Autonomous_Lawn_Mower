@@ -6,7 +6,7 @@ std::vector<double> NavigationUtils::getCurrentLocation() {
 
 }
 
-void NavigationUtils::setDesiredGoal(move_base_msgs::MoveBaseGoal goal, std::vector<double> position, geometry_msgs::Quaternion qMsg) {
+void NavigationUtils::setDesiredGoal(move_base_msgs::MoveBaseGoal& goal, std::vector<double> position, geometry_msgs::Quaternion& qMsg) {
   goal.target_pose.header.frame_id = "map";
   goal.target_pose.header.stamp = ros::Time::now();
   goal.target_pose.pose.position.x = position[0];
@@ -14,22 +14,23 @@ void NavigationUtils::setDesiredGoal(move_base_msgs::MoveBaseGoal goal, std::vec
   goal.target_pose.pose.orientation = qMsg;
 }
 
-void NavigationUtils::sendGoal(move_base_msgs::MoveBaseGoal goal, 
-actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
+void NavigationUtils::sendGoal(move_base_msgs::MoveBaseGoal& goal, 
+actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient) {
   ROS_INFO("Move robot: x= %f, y= %f, yaw= %f", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y, goal.target_pose.pose.orientation);
   actionClient.sendGoal(goal);
 }
 
 geometry_msgs::Quaternion NavigationUtils::convertToQuaternion(double theta) {
   double radians = theta*(M_PI/180);
-  tf::Quaternion quaternion;
-  quaternion = tf::createQuaternionFromYaw(radians);
+  tf2::Quaternion myQuaternion;
+  myQuaternion.setRPY( 0, 0, radians );
+  myQuaternion.normalize();
   geometry_msgs::Quaternion qMsg;
-  tf::quaternionTFToMsg(quaternion, qMsg);
+  qMsg = tf2::toMsg(myQuaternion);;
   return qMsg;
 }
 
-bool NavigationUtils::checkGoalReach(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
+bool NavigationUtils::checkGoalReach(actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient) {
  actionClient.waitForResult();
  bool success = false;
     if (actionClient.getState() == actionlib::SimpleClientGoalState::SUCCEEDED) {
@@ -50,7 +51,7 @@ std::vector<std::vector<double>>  NavigationUtils::getPointsFromFile(std::string
 
 }
 
-bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal goal, 
+bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal& goal, 
 actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
 
 }

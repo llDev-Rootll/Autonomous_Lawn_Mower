@@ -8,7 +8,8 @@ find_package(catkin REQUIRED COMPONENTS
   actionlib
   move_base_msgs
   roscpp
-  tf
+  tf2
+  tf2_ros
   std_msgs
 )
 catkin_package()
