@@ -1,0 +1,5 @@
+Done processing ./include/LawnMower.h
+Done processing ./include/NavigationUtils.h
+Done processing ./src/LawnMower.cpp
+Done processing ./src/NavigationUtils.cpp
+Total errors found: 4
