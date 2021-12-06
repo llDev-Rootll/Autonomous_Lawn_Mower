@@ -95,6 +95,7 @@ This executes the lawn mowing simulation and bring up rviz for visualization of 
  - UMLs have been revised
  - Unit test case to check the quaternion conversion has been written
  - Launch files to spawn the simulation, run the lawn mowing node and the unit tests have been written
+ 
  Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=241005242), for an exhaustive list of tasks completed in Phase 2.
 ## To Do
 
