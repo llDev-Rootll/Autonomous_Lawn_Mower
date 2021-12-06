@@ -63,6 +63,7 @@ In a terminal run :
     roslaunch alm spawn.launch 
 This spawns the turtlebot3 simulation in the custom world environment on the green lawn.
 <img alt="world_gazebo" src="assets/world_gazebo.png" width="75%" />
+
 *Fig 1 : Spawn the robot in the world*
 In a terminal run the following to bring up the mowing routine node:
 
@@ -70,6 +71,7 @@ In a terminal run the following to bring up the mowing routine node:
     roslaunch alm mower.launch
 This executes the lawn mowing simulation and bring up rviz for visualization of the different parameters.
 <img alt="world_rviz" src="assets/world_rviz.png" width="75%" />
+
 *Fig 1 : RVIZ visualisation*
 
 ## Phase 1
