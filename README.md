@@ -65,6 +65,7 @@ This spawns the turtlebot3 simulation in the custom world environment on the gre
 <img alt="world_gazebo" src="assets/world_gazebo.png" width="75%" />
 
 *Fig 1 : Spawn the robot in the world*
+
 In a terminal run the following to bring up the mowing routine node:
 
     source devel/setup.bash
