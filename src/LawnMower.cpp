@@ -41,21 +41,21 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 // }
 void LawnMower::mow() {
 
+  move_base_msgs::MoveBaseGoal goal;
+  MoveBaseClient actionClient("move_base", true);
+  NavigationUtils navUtils;
+  geometry_msgs::Quaternion qMsg;
+  double dummy_theta=0;
+  std::vector<double> dummy_pose = {1,0};
+  qMsg = navUtils.convertToQuaternion(dummy_theta);
+  navUtils.setDesiredGoal(goal, dummy_pose, qMsg);
+  navUtils.sendGoal(goal, actionClient);
+  bool success_flag = navUtils.checkGoalReach(actionClient);
 
 }
 LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   node_h = n;
   path_to_waypoints = path;
-  move_base_msgs::MoveBaseGoal goal;
-  MoveBaseClient actionClient("move_base", true);
-  NavigationUtils navUtils;
-  geometry_msgs::Quaternion qMsg;
-  double dummy_theta;
-  std::vector<double> dummy_pose = {0,0};
-  qMsg = navUtils.convertToQuaternion(dummy_theta);
-  navUtils.setDesiredGoal(goal, dummy_pose, qMsg);
-  navUtils.sendGoal(goal, actionClient);
-  bool success_flag = navUtils.checkGoalReach(actionClient);
   ros::spin();
 }
 
