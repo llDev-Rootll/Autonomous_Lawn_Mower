@@ -34,11 +34,12 @@ The sprint planning notes can be found [here](https://docs.google.com/document/d
 
 ## System Architecture 
 The following shows the activity diagram for our proposed schema : 
+
 <img alt="activity" src="assets/activity_diag.png" width="50%" />
 
 *Fig 1 :  Activity Diagram*
 
-The corresponding class diagram can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/UML/initial/Mower_Class_Diagram.pdf).
+The corresponding class diagram can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/UML/Revised/Revised_Class_Diagram.pdf).
 ## Steps to install dependencies
 Run the following commands to install the dependencies required:
 
