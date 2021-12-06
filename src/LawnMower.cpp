@@ -1,46 +1,32 @@
-#include "ros/ros.h"
+/**
+ * Copyright (c) 2021 Aditi Ramadwar, Arunava Basu
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining
+ * a copy of this software and associated documentation files (the "Software"),
+ * to deal in the Software without restriction, including without limitation
+ * the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ * and/or sell copies of the Software, and to permit persons to whom the Software
+ * is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ * OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 #include <move_base_msgs/MoveBaseAction.h>
 #include <actionlib/client/simple_action_client.h>
+#include "ros/ros.h"
 #include "LawnMower.h"
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
  MoveBaseClient;
 
-
-// int main(int argc, char** argv){
-//   ros::init(argc, argv, "simple_navigation_goals");
-
-//   //tell the action client that we want to spin a thread by default
-//   MoveBaseClient ac("move_base", true);
-
-//   //wait for the action server to come up
-//   while(!ac.waitForServer(ros::Duration(5.0))){
-//     ROS_INFO("Waiting for the move_base action server to come up");
-//   }
-
-//   move_base_msgs::MoveBaseGoal goal;
-
-//   //we'll send a goal to the robot to move 1 meter forward
-//   goal.target_pose.header.frame_id = "base_link";
-//   goal.target_pose.header.stamp = ros::Time::now();
-
-//   goal.target_pose.pose.position.x = 1.0;
-//   goal.target_pose.pose.orientation.w = 1.0;
-
-//   ROS_INFO("Sending goal");
-//   ac.sendGoal(goal);
-
-//   ac.waitForResult();
-
-//   if(ac.getState() == actionlib::SimpleClientGoalState::SUCCEEDED)
-//     ROS_INFO("Hooray, the base moved 1 meter forward");
-//   else
-//     ROS_INFO("The base failed to move forward 1 meter for some reason");
-
-//   return 0;
-// }
 void LawnMower::mow() {
-
   move_base_msgs::MoveBaseGoal goal;
   MoveBaseClient actionClient("move_base", true);
   while (!actionClient.waitForServer(ros::Duration(5.0))) {
@@ -57,7 +43,6 @@ void LawnMower::mow() {
     navUtils.sendGoal(goal, actionClient);
     bool success_flag = navUtils.checkGoalReach(actionClient);
   }
-
 }
 LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   node_h = n;
