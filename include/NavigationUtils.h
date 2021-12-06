@@ -32,24 +32,69 @@
 
 class NavigationUtils {
  public:
+    /**
+     * @brief Get the Current Location of the lawn mower
+     * 
+     * @return std::vector<double> 
+     */
     std::vector<double> getCurrentLocation();
-
+    /**
+     * @brief Set the Desired Goal 
+     * 
+     * @param goal 
+     * @param position 
+     * @param qMsg - Quaternion message
+     */
     void setDesiredGoal(move_base_msgs::MoveBaseGoal& goal,
     std::vector<double> position, geometry_msgs::Quaternion& qMsg);
-
+    /**
+     * @brief Send the goal to the move_base server
+     * 
+     * @param goal 
+     * @param actionClient 
+     */
     void sendGoal(move_base_msgs::MoveBaseGoal& goal,
     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
     actionClient);
-
+    /**
+     * @brief generates a quaternion from r p y 
+     * and returns it as a geometry message
+     * 
+     * @param theta 
+     * @return geometry_msgs::Quaternion 
+     */
     geometry_msgs::Quaternion convertToQuaternion(double theta);
-
+    /**
+     * @brief Checks if the goal has been reached
+     * 
+     * @param actionClient 
+     * @return true 
+     * @return false 
+     */
     bool checkGoalReach(actionlib::SimpleActionClient
     <move_base_msgs::MoveBaseAction>& actionClient);
-
+    /**
+     * @brief An emergency stop to halt the robot
+     * 
+     * @return true 
+     * @return false 
+     */
     bool emergencyStop();
-
+    /**
+     * @brief Get the position and yaw values 
+     * of each waypoint from a file
+     * 
+     * @param path 
+     * @return std::vector<std::vector<double>> 
+     */
     std::vector<std::vector<double>>  getPointsFromFile(std::string path);
-
+    /**
+     * @brief Send goal as home position
+     * 
+     * @param actionClient 
+     * @return true 
+     * @return false 
+     */
     bool returnToHome(move_base_msgs::MoveBaseGoal& goal
     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
     actionClient);

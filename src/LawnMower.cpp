@@ -25,31 +25,56 @@
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
  MoveBaseClient;
-
+/**
+ * @brief The major function which 
+ * starts the lawn mowing routine
+ * 
+ */
 void LawnMower::mow() {
   move_base_msgs::MoveBaseGoal goal;
   MoveBaseClient actionClient("move_base", true);
   while (!actionClient.waitForServer(ros::Duration(5.0))) {
+    // Wait for move base server
     ROS_INFO("Waiting for the move_base action server to come up");
   }
   NavigationUtils navUtils;
   geometry_msgs::Quaternion qMsg;
   std::vector<std::vector<double>> dummy_pos = {{0.5, 0, 0},
   {0.5, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0} };
+  // Dummy trajectory to test waypoint navigation
   for (auto & element : dummy_pos) {
+    // convert orietation to quaternion
     qMsg = navUtils.convertToQuaternion(element[2]);
+    // set the goal message with desired postion and orientation
     navUtils.setDesiredGoal(goal, element, qMsg);
     ROS_INFO("Sending goal");
+    // send the goal message
     navUtils.sendGoal(goal, actionClient);
+    // record the status flag
     bool success_flag = navUtils.checkGoalReach(actionClient);
   }
 }
+/**
+ * @brief Constructor to set the ros 
+ * node hand and set the path to waypoints file
+ * 
+ * @param n 
+ * @param path 
+ */
 LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   node_h = n;
   path_to_waypoints = path;
   ros::spinOnce();
 }
 
+/**
+ * @brief main function which creates a 
+ * new node handle and starts execution
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
 int main(int argc, char **argv) {
   ros::init(argc, argv, "alm");
   ros::NodeHandle ros_node_h;

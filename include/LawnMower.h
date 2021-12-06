@@ -27,11 +27,31 @@
 #include <NavigationUtils.h>
 class LawnMower {
  public:
+    /**
+     * @brief Construct a new Lawn Mower constructor to 
+     * initialize the node handle and path to waypoints file
+     * 
+     * @param n - node handle
+     * @param path - path to waypoints file
+     */
     explicit LawnMower(ros::NodeHandle n, std::string path);
+    /**
+     * @brief main function which starts the 
+     * mowing routine by following the waypoints
+     * 
+     */
      void mow();
 
  private:
+    /**
+     * @brief ROS node handle
+     * 
+     */
     ros::NodeHandle node_h;
+    /**
+     * @brief path to waypoints file
+     * 
+     */
     std::string path_to_waypoints;
 };
 #endif  // INCLUDE_LAWNMOWER_H_
