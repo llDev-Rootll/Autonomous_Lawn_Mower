@@ -3,7 +3,8 @@
 #include <actionlib/client/simple_action_client.h>
 #include "LawnMower.h"
 
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseClient;
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+ MoveBaseClient;
 
 
 // int main(int argc, char** argv){
@@ -42,7 +43,7 @@ void LawnMower::mow() {
 
   move_base_msgs::MoveBaseGoal goal;
   MoveBaseClient actionClient("move_base", true);
-  while(!actionClient.waitForServer(ros::Duration(5.0))){
+  while (!actionClient.waitForServer(ros::Duration(5.0))) {
     ROS_INFO("Waiting for the move_base action server to come up");
   }
   NavigationUtils navUtils;
@@ -67,7 +68,7 @@ LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
 int main(int argc, char **argv) {
   ros::init(argc, argv, "alm");
   ros::NodeHandle ros_node_h;
-  std::string path="../data/waypoints.txt";
+  std::string path = "../data/waypoints.txt";
   ROS_INFO_STREAM("Starting LawnMower... ");
   LawnMower mower(ros_node_h, path);
   mower.mow();
