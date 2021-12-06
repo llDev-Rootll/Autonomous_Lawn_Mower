@@ -98,5 +98,10 @@ class NavigationUtils {
     bool returnToHome(move_base_msgs::MoveBaseGoal& goal,
     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
     actionClient);
+
+ private:
+	std::vector<double> goal_position = {0,0};
+	bool success_status = false;
+	bool emergency_stop = false;
 };
 #endif  // INCLUDE_NAVIGATIONUTILS_H_
