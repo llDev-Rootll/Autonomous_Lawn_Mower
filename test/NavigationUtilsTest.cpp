@@ -23,6 +23,7 @@
 #include "../src/NavigationUtils.cpp"
 #include <move_base_msgs/MoveBaseAction.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <actionlib/client/simple_action_client.h>
 
 TEST(NavigationUtilsTests, convert_To_Quaternion) {
   NavigationUtils nav_test;
@@ -42,4 +43,19 @@ TEST(NavigationUtilsTests, set_goal) {
   std::vector<double> position = {0.5, 0};
   nav_test.setDesiredGoal(goal, position, quart);
   EXPECT_EQ(position[0], goal.target_pose.pose.position.x);
+}
+
+TEST(NavigationUtilsTests, check_if_Goal_Reached) {
+  NavigationUtils nav_test;
+  move_base_msgs::MoveBaseGoal goal;
+  geometry_msgs::Quaternion q_test;
+  typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+  MoveBaseClient;
+
+  MoveBaseClient actionClient("move_base", true);
+//   while (!actionClient.waitForServer(ros::Duration(5.0))) {
+//     // Wait for move base server
+//     ROS_INFO("Waiting for the move_base action server to come up");
+//   }
+  EXPECT_EQ(1, actionClient.isServerConnected());
 }
