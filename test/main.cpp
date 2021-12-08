@@ -22,7 +22,8 @@
 #include <gtest/gtest.h>
 #include "NavigationUtilsTest.cpp"
 int main(int argc, char** argv) {
+  testing::InitGoogleTest(&argc, argv);
   ros::init(argc, argv, "test_mow");
-  ::testing::InitGoogleTest(&argc, argv);
+  ros::NodeHandle nh;
   return RUN_ALL_TESTS();
 }

@@ -43,15 +43,20 @@ void LawnMower::mow() {
   {0.5, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0} };
   // Dummy trajectory to test waypoint navigation
   for (auto & element : dummy_pos) {
-    // convert orietation to quaternion
-    qMsg = navUtils.convertToQuaternion(element[2]);
-    // set the goal message with desired postion and orientation
-    navUtils.setDesiredGoal(goal, element, qMsg);
-    ROS_INFO("Sending goal");
-    // send the goal message
-    navUtils.sendGoal(goal, actionClient);
-    // record the status flag
-    bool success_flag = navUtils.checkGoalReach(actionClient);
+      if (actionClient.isServerConnected()) {
+        // convert orietation to quaternion
+        qMsg = navUtils.convertToQuaternion(element[2]);
+        // set the goal message with desired postion and orientation
+        navUtils.setDesiredGoal(goal, element, qMsg);
+        ROS_INFO("Sending goal");
+        // send the goal message
+        navUtils.sendGoal(goal, actionClient);
+        // record the status flag
+        bool success_flag = navUtils.checkGoalReach(actionClient);
+      } else {
+          ROS_WARN("Connection to server failed!");
+          break;
+      }
   }
 }
 /**
