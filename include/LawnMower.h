@@ -53,5 +53,6 @@ class LawnMower {
      * 
      */
     std::string path_to_waypoints;
+    move_base_msgs::MoveBaseGoal home;
 };
 #endif  // INCLUDE_LAWNMOWER_H_

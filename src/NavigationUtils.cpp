@@ -117,6 +117,7 @@ NavigationUtils::getPointsFromFile(std::string path) {
  * @return true 
  * @return false 
  */
-bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal& goal,
-actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&actionClient) {
+bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient) {
+
+  sendGoal(home, actionClient);
 }

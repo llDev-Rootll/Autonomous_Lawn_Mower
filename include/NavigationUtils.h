@@ -95,9 +95,7 @@ class NavigationUtils {
      * @return true 
      * @return false 
      */
-    bool returnToHome(move_base_msgs::MoveBaseGoal& goal,
-    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
-    actionClient);
+    bool returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient);
 
  private:
 	std::vector<double> goal_position = {0,0};

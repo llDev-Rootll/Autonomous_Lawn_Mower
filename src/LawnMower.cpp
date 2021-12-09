@@ -41,6 +41,7 @@ void LawnMower::mow() {
   geometry_msgs::Quaternion qMsg;
   std::vector<std::vector<double>> dummy_pos = {{0.5, 0, 0},
   {0.5, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0} };
+  
   // Dummy trajectory to test waypoint navigation
   for (auto & element : dummy_pos) {
       if (actionClient.isServerConnected()) {
@@ -58,6 +59,8 @@ void LawnMower::mow() {
           break;
       }
   }
+
+  navUtils.returnToHome(home, actionClient);
 }
 /**
  * @brief Constructor to set the ros 
@@ -69,6 +72,15 @@ void LawnMower::mow() {
 LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
   node_h = n;
   path_to_waypoints = path;
+  home.target_pose.header.frame_id = "map";
+  home.target_pose.header.stamp = ros::Time::now();
+  home.target_pose.pose.position.x = 0.0145;
+  home.target_pose.pose.position.y = 0.023;
+  home.target_pose.pose.orientation.x = 0;
+  home.target_pose.pose.orientation.y = 0;
+  home.target_pose.pose.orientation.z = 0.00632866717679;
+  home.target_pose.pose.orientation.w = 0.999979973785;
+
   ros::spinOnce();
 }
 
