@@ -20,7 +20,7 @@
  */
 #include <ros/ros.h>
 #include <gtest/gtest.h>
-#include "NavigationUtilsTest.cpp"
+
 int main(int argc, char** argv) {
   testing::InitGoogleTest(&argc, argv);
   ros::init(argc, argv, "test_mow");
