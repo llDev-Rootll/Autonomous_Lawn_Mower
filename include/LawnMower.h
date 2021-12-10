@@ -23,8 +23,11 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include "std_msgs/String.h"
 #include "ros/ros.h"
 #include <NavigationUtils.h>
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+ MoveBaseClient;
 class LawnMower {
  public:
     /**
@@ -41,7 +44,10 @@ class LawnMower {
      * 
      */
      void mow();
-
+     void start(const std_msgs::String::ConstPtr& msg);
+     void e_stop(const std_msgs::String::ConstPtr& msg);
+     void pause(const std_msgs::String::ConstPtr& msg);
+     void resume(const std_msgs::String::ConstPtr& msg);
  private:
     /**
      * @brief ROS node handle
@@ -54,5 +60,8 @@ class LawnMower {
      */
     std::string path_to_waypoints;
     move_base_msgs::MoveBaseGoal home;
+    MoveBaseClient actionClient;
+    std::vector<double> current_goal;
+    std::string flag;
 };
 #endif  // INCLUDE_LAWNMOWER_H_

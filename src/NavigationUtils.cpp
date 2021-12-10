@@ -99,7 +99,10 @@ bool NavigationUtils::checkGoalReach(actionlib::SimpleActionClient
  * @return true 
  * @return false 
  */
-bool NavigationUtils::emergencyStop() {
+bool NavigationUtils::emergencyStop(actionlib::SimpleActionClient
+<move_base_msgs::MoveBaseAction>& actionClient) {
+  actionClient.cancelAllGoals();
+  return true;
 }
 /**
  * @brief Reads waypoints from a file and returns them as a vector

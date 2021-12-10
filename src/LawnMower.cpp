@@ -23,16 +23,15 @@
 #include "ros/ros.h"
 #include "LawnMower.h"
 
-typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
- MoveBaseClient;
-/**
- * @brief The major function which 
- * starts the lawn mowing routine
- * 
- */
-void LawnMower::mow() {
+// typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+//  MoveBaseClient;
+
+void LawnMower::start(const std_msgs::String::ConstPtr& msg) {
+  ROS_DEBUG_STREAM("Successfully received command");
+  std::string command = msg->data.c_str();
+  ROS_INFO_STREAM("Message heard : " << command);
   move_base_msgs::MoveBaseGoal goal;
-  MoveBaseClient actionClient("move_base", true);
+  // MoveBaseClient actionClient("move_base", true);
   while (!actionClient.waitForServer(ros::Duration(5.0))) {
     // Wait for move base server
     ROS_INFO("Waiting for the move_base action server to come up");
@@ -41,11 +40,15 @@ void LawnMower::mow() {
   geometry_msgs::Quaternion qMsg;
   std::vector<std::vector<double>> dummy_pos = {{0.5, 0, 0},
   {0.5, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0} };
-  
   // Dummy trajectory to test waypoint navigation
+  
   for (auto & element : dummy_pos) {
+      if (flag=="e_stop") {
+        break;
+      }
       if (actionClient.isServerConnected()) {
         // convert orietation to quaternion
+        current_goal = element;
         qMsg = navUtils.convertToQuaternion(element[2]);
         // set the goal message with desired postion and orientation
         navUtils.setDesiredGoal(goal, element, qMsg);
@@ -59,8 +62,46 @@ void LawnMower::mow() {
           break;
       }
   }
+  if (flag!="e_stop") {
+        navUtils.returnToHome(home, actionClient);
+      }
+  
+}
 
-  navUtils.returnToHome(home, actionClient);
+void LawnMower::e_stop(const std_msgs::String::ConstPtr& msg) {
+  ROS_DEBUG_STREAM("Successfully received command");
+  std::string command = msg->data.c_str();
+  ROS_INFO_STREAM("Message heard : " << command);
+  NavigationUtils navUtils;
+  navUtils.emergencyStop(actionClient);
+  
+  flag = "e_stop";
+}
+void LawnMower::pause(const std_msgs::String::ConstPtr& msg) {
+  ROS_DEBUG_STREAM("Successfully received command");
+  std::string command = msg->data.c_str();
+  ROS_INFO_STREAM("Message heard : " << command);
+  
+}
+void LawnMower::resume(const std_msgs::String::ConstPtr& msg) {
+  ROS_DEBUG_STREAM("Successfully received command");
+  std::string command = msg->data.c_str();
+  ROS_INFO_STREAM("Message heard : " << command);
+  
+}
+/**
+ * @brief The major function which 
+ * starts the lawn mowing routine
+ * 
+ */
+void LawnMower::mow() {
+  ros::Subscriber sub_start = node_h.subscribe("alm_start", 1000, &LawnMower::start, this);
+  ros::Subscriber sub_e_stop = node_h.subscribe("alm_e_stop", 1000, &LawnMower::e_stop, this);
+  ros::Subscriber sub_pause = node_h.subscribe("alm_pause", 1000, &LawnMower::pause, this);
+  ros::Subscriber sub_resume = node_h.subscribe("alm_resume", 1000, &LawnMower::resume, this);
+  ros::AsyncSpinner spinner(4); // Use 4 threads
+  spinner.start();
+  ros::waitForShutdown();
 }
 /**
  * @brief Constructor to set the ros 
@@ -69,7 +110,7 @@ void LawnMower::mow() {
  * @param n 
  * @param path 
  */
-LawnMower::LawnMower(ros::NodeHandle n, std::string path) {
+LawnMower::LawnMower(ros::NodeHandle n, std::string path) : actionClient("move_base", true), flag("") {
   node_h = n;
   path_to_waypoints = path;
   home.target_pose.header.frame_id = "map";
@@ -99,6 +140,6 @@ int main(int argc, char **argv) {
   ROS_INFO_STREAM("Starting LawnMower... ");
   LawnMower mower(ros_node_h, path);
   mower.mow();
-  ros::spin();
+
   return 0;
 }
