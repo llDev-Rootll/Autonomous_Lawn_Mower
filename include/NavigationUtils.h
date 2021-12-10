@@ -53,7 +53,7 @@ class NavigationUtils {
      * @param goal 
      * @param actionClient 
      */
-    void sendGoal(move_base_msgs::MoveBaseGoal& goal,
+    bool sendGoal(move_base_msgs::MoveBaseGoal& goal,
     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
     actionClient);
     /**

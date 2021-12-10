@@ -32,7 +32,7 @@ TEST(NavigationUtilsTests, convert_To_Quaternion) {
   EXPECT_EQ(1, q_test.w);
 }
 
-TEST(NavigationUtilsTests, set_goal) {
+TEST(NavigationUtilsTests, set_desired_goal) {
   NavigationUtils nav_test;
   move_base_msgs::MoveBaseGoal goal;
   geometry_msgs::Quaternion quart;
@@ -43,6 +43,28 @@ TEST(NavigationUtilsTests, set_goal) {
   std::vector<double> position = {0.5, 0};
   nav_test.setDesiredGoal(goal, position, quart);
   EXPECT_EQ(position[0], goal.target_pose.pose.position.x);
+}
+
+TEST(NavigationUtilsTests, send_goal_to_server) {
+  typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+  MoveBaseClient;
+  NavigationUtils nav_test;
+  move_base_msgs::MoveBaseGoal goal;
+  goal.target_pose.header.frame_id = "base_link";
+  goal.target_pose.header.stamp = ros::Time::now();
+  goal.target_pose.pose.position.x = 0.1;
+  goal.target_pose.pose.position.y = 0;
+  goal.target_pose.pose.orientation.x = 0;
+  goal.target_pose.pose.orientation.y = 0;
+  goal.target_pose.pose.orientation.z = 0;
+  goal.target_pose.pose.orientation.w = 1;
+  MoveBaseClient actionClient("move_base", true);
+  while (!actionClient.waitForServer(ros::Duration(1.0))) {
+    // Wait for move base server
+    ros::spinOnce();
+    ROS_INFO("Waiting for the move_base action server to come up");
+  }
+  EXPECT_TRUE(nav_test.sendGoal(goal, actionClient));
 }
 
 TEST(NavigationUtilsTests, check_if_Goal_Reached) {
@@ -65,6 +87,5 @@ TEST(NavigationUtilsTests, check_if_Goal_Reached) {
     ROS_INFO("Waiting for the move_base action server to come up");
   }
   actionClient.sendGoal(goal);
-  bool success_flag = nav_test.checkGoalReach(actionClient);
-  EXPECT_TRUE(success_flag);
+  EXPECT_TRUE(nav_test.checkGoalReach(actionClient));
 }

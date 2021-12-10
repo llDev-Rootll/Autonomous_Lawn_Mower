@@ -51,9 +51,10 @@ void NavigationUtils::setDesiredGoal(move_base_msgs::MoveBaseGoal& goal,
  * @param goal 
  * @param actionClient 
  */
-void NavigationUtils::sendGoal(move_base_msgs::MoveBaseGoal& goal,
+bool NavigationUtils::sendGoal(move_base_msgs::MoveBaseGoal& goal,
 actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient) {
   actionClient.sendGoal(goal);
+  return true;
 }
 /**
  * @brief Creates a qauternion from the yaw value 

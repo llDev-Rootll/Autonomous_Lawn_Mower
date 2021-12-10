@@ -38,21 +38,67 @@ class LawnMower {
      * @param path - path to waypoints file
      */
     explicit LawnMower(ros::NodeHandle n, std::string path);
+
     /**
      * @brief main function which starts the 
      * mowing routine by following the waypoints
      * 
      */
      void mow();
+
+     /**
+      * @brief Callback function for UI interrupt to start the 
+      *        trajectory tracking of robot
+      * 
+      * @param msg Data containing UI information
+      */
      void start(const std_msgs::String::ConstPtr& msg);
+
+     /**
+      * @brief Callback function for UI interrupt instantly
+      *        stop the robot
+      * 
+      * @param msg Data containing UI information
+      */
      void e_stop(const std_msgs::String::ConstPtr& msg);
+
+     /**
+      * @brief Callback function for UI interrupt to pause the 
+      *        trajectory tracking of robot.
+      * 
+      * @param msg Data containing UI information
+      */
      void pause(const std_msgs::String::ConstPtr& msg);
+
+     /**
+      * @brief Callback function for UI interrupt to resume the 
+      *        trajectory tracking of robot
+      * 
+      * @param msg Data containing UI information
+      */
      void resume(const std_msgs::String::ConstPtr& msg);
+
+     /**
+      * @brief Set the Index o
+      * 
+      * @param i index of the trajectory
+      * @return bool flag for confirmation
+      */
+     bool setIndex(int i);
+
+     /**
+      * @brief Get the Index
+      * 
+      * @return int index of trajectory vector
+      */
+     int getIndex();
+
  private:
     /**
      * @brief ROS node handle
      * 
      */
+
     ros::NodeHandle node_h;
     /**
      * @brief path to waypoints file
@@ -63,5 +109,7 @@ class LawnMower {
     MoveBaseClient actionClient;
     std::vector<double> current_goal;
     std::string flag;
+    int paused_index = 0;
+    bool pause_flag = false;
 };
 #endif  // INCLUDE_LAWNMOWER_H_
