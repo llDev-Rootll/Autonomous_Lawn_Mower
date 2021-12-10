@@ -64,8 +64,9 @@ TEST(NavigationUtilsTests, send_goal_to_server) {
     ros::spinOnce();
     ROS_INFO("Waiting for the move_base action server to come up");
   }
-  EXPECT_EQ(true, nav_test.sendGoal(goal, actionClient));
+  EXPECT_TRUE(nav_test.sendGoal(goal, actionClient));
 }
+
 TEST(NavigationUtilsTests, check_if_Goal_Reached) {
   typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
   MoveBaseClient;
@@ -86,6 +87,5 @@ TEST(NavigationUtilsTests, check_if_Goal_Reached) {
     ROS_INFO("Waiting for the move_base action server to come up");
   }
   actionClient.sendGoal(goal);
-  bool success_flag = nav_test.checkGoalReach(actionClient);
-  EXPECT_TRUE(success_flag);
+  EXPECT_TRUE(nav_test.checkGoalReach(actionClient));
 }
