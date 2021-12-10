@@ -29,7 +29,7 @@ target_link_libraries(teleop ${catkin_LIBRARIES})
 #Testing block for rostest
 if(CATKIN_ENABLE_TESTING)
  find_package(rostest REQUIRED)
-  add_rostest_gtest(test_mow test/test.launch test/main.cpp)
-  target_link_libraries(test_mow ${catkin_LIBRARIES})
-  add_dependencies(mow test_mow ${catkin_EXPORTED_TARGETS})
+ add_rostest_gtest(test_mow test/test.launch test/main.cpp src/NavigationUtils.cpp test/NavigationUtilsTest.cpp)
+ target_link_libraries(test_mow ${catkin_LIBRARIES})
+
 endif()
