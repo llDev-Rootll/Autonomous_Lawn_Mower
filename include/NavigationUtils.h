@@ -79,7 +79,8 @@ class NavigationUtils {
      * @return true 
      * @return false 
      */
-    bool emergencyStop();
+    bool emergencyStop(actionlib::SimpleActionClient
+    <move_base_msgs::MoveBaseAction>& actionClient);
     /**
      * @brief Get the position and yaw values 
      * of each waypoint from a file

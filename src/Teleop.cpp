@@ -42,8 +42,14 @@ int main(int argc, char **argv)
 {
     ros::init(argc, argv, "teleop_node");
     ros::NodeHandle n;
-    ros::Publisher chatter_pub = n.advertise<std_msgs::String>
-    ("teleop_alm", 1000);
+    ros::Publisher alm_start = n.advertise<std_msgs::String>
+    ("alm_start", 1000);
+    ros::Publisher alm_pause = n.advertise<std_msgs::String>
+    ("alm_pause", 1000);
+    ros::Publisher alm_resume = n.advertise<std_msgs::String>
+    ("alm_resume", 1000);
+    ros::Publisher alm_e_stop= n.advertise<std_msgs::String>
+    ("alm_e_stop", 1000);
     Teleop tel;
     ros::Rate loop_rate(10);
     std::cout << "Reading from keyboard" << std::endl;
@@ -60,7 +66,7 @@ int main(int argc, char **argv)
     ss << "start";
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
-    chatter_pub.publish(msg);
+    alm_start.publish(msg);
   }
   if (c == 'p') {
     std_msgs::String msg;
@@ -68,7 +74,7 @@ int main(int argc, char **argv)
     ss << "pause";
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
-    chatter_pub.publish(msg);
+    alm_pause.publish(msg);
   }
   if (c == 'r') {
     std_msgs::String msg;
@@ -76,7 +82,7 @@ int main(int argc, char **argv)
     ss << "resume";
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
-    chatter_pub.publish(msg);
+    alm_resume.publish(msg);
   }
   if (c == 'e') {
     std_msgs::String msg;
@@ -84,7 +90,7 @@ int main(int argc, char **argv)
     ss << "e_stop";
     msg.data = ss.str();
     ROS_INFO("%s", msg.data.c_str());
-    chatter_pub.publish(msg);
+    alm_e_stop.publish(msg);
   }
   loop_rate.sleep();
   ros::spinOnce();
