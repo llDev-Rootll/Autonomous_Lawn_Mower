@@ -24,10 +24,11 @@
 #include "LawnMower.h"
 #include "NavigationUtils.h"
 #include "std_msgs/String.h"
-// #include <move_base_msgs/MoveBaseAction.h>
-// #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-// #include <actionlib/client/simple_action_client.h>
 
+/**
+ * @brief Unit test for getIndex, setIndex method
+ * 
+ */
 TEST(LawnMowerTests, test_index_setter_getter) {
   ros::NodeHandle nh;
   LawnMower mower_test(nh);
