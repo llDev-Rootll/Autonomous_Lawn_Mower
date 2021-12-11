@@ -28,13 +28,10 @@
 // #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 // #include <actionlib/client/simple_action_client.h>
 
-TEST(LawnMowerTests, test1) {
-  std::string path =
-  "../data/waypoints_test.csv";
-  ROS_INFO_STREAM("Starting LawnMower...");
-  NavigationUtils nav_test;
+TEST(LawnMowerTests, test_index_setter_getter) {
   ros::NodeHandle nh;
   LawnMower mower_test(nh);
   EXPECT_TRUE(mower_test.setIndex(2));
   EXPECT_EQ(2,mower_test.getIndex());
 }
+

@@ -17,10 +17,12 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * @file LawnMower.cpp
+ * @author Aditi Ramadwar (adiram@umd.edu)
+ * @author Arunava Basu (arunava@umd.edu)
+ * @version 0.1
+ * @date 2021-12-11
  */
-#include <move_base_msgs/MoveBaseAction.h>
-#include <actionlib/client/simple_action_client.h>
-#include "ros/ros.h"
 #include "LawnMower.h"
 
 /**
@@ -184,7 +186,5 @@ LawnMower::LawnMower(ros::NodeHandle n) : actionClient("move_base", true), flag(
   home.target_pose.pose.orientation.y = 0;
   home.target_pose.pose.orientation.z = 0.00632866717679;
   home.target_pose.pose.orientation.w = 0.999979973785;
-  
-  // {{0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, -90}, {0.4, 0, 0}, {0, 0, -90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, 90}, {0.4, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}}
   ros::spinOnce();
 }

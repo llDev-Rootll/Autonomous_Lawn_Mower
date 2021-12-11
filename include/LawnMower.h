@@ -17,17 +17,20 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * @file LawnMower.h
+ * @author Aditi Ramadwar (adiram@umd.edu)
+ * @author Arunava Basu (arunava@umd.edu)
+ * @version 0.1
+ * @date 2021-12-11
  */
 #ifndef INCLUDE_LAWNMOWER_H_
 #define INCLUDE_LAWNMOWER_H_
-#include <string>
-#include <sstream>
-#include <vector>
 #include "std_msgs/String.h"
-#include "ros/ros.h"
 #include <NavigationUtils.h>
+
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
  MoveBaseClient;
+
 class LawnMower {
  public:
     /**
@@ -113,6 +116,5 @@ class LawnMower {
     bool pause_flag = false;
     std::vector<std::vector<double>> dummy_pos;
     std::vector<bool> success_flags;
-    
 };
 #endif  // INCLUDE_LAWNMOWER_H_
