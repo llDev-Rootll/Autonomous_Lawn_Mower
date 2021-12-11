@@ -25,6 +25,10 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 #include <actionlib/client/simple_action_client.h>
 
+/**
+ * @brief Unit test for convertToQuaternion method
+ * 
+ */
 TEST(NavigationUtilsTests, convert_To_Quaternion) {
   NavigationUtils nav_test;
   geometry_msgs::Quaternion q_test;
@@ -32,6 +36,10 @@ TEST(NavigationUtilsTests, convert_To_Quaternion) {
   EXPECT_EQ(1, q_test.w);
 }
 
+/**
+ * @brief Unit test for setDesiredGoal method
+ * 
+ */
 TEST(NavigationUtilsTests, set_desired_goal) {
   NavigationUtils nav_test;
   move_base_msgs::MoveBaseGoal goal;
@@ -45,6 +53,10 @@ TEST(NavigationUtilsTests, set_desired_goal) {
   EXPECT_EQ(position[0], goal.target_pose.pose.position.x);
 }
 
+/**
+ * @brief Unit test for sendGoal method
+ * 
+ */
 TEST(NavigationUtilsTests, send_goal_to_server) {
   typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
   MoveBaseClient;
@@ -67,6 +79,10 @@ TEST(NavigationUtilsTests, send_goal_to_server) {
   EXPECT_TRUE(nav_test.sendGoal(goal, actionClient));
 }
 
+/**
+ * @brief Unit test for checkGoalReach method
+ * 
+ */
 TEST(NavigationUtilsTests, check_if_Goal_Reached) {
   typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
   MoveBaseClient;
@@ -88,4 +104,16 @@ TEST(NavigationUtilsTests, check_if_Goal_Reached) {
   }
   actionClient.sendGoal(goal);
   EXPECT_TRUE(nav_test.checkGoalReach(actionClient));
+}
+
+/**
+ * @brief Unit test for checkTrajectoryCompletion method
+ * 
+ */
+TEST(NavigationUtilsTests, check_traj_completion) {
+  NavigationUtils nav_test;
+  std::vector<bool> success_flags_test = {true, true};
+  std::vector<std::vector<double>> dummy_pos_test = {{0, 0, 0}, {0, 0, 0}};
+  EXPECT_TRUE(nav_test.checkTrajectoryCompletion(success_flags_test,
+  dummy_pos_test));
 }

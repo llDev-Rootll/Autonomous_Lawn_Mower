@@ -18,7 +18,7 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-add_executable(mow src/LawnMower.cpp src/NavigationUtils.cpp)
+add_executable(mow src/LawnMower.cpp src/NavigationUtils.cpp src/RunMower.cpp)
 add_dependencies(mow ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(mow ${catkin_LIBRARIES})
 

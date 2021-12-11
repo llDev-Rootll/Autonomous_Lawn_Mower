@@ -20,11 +20,19 @@
  */
 #include <ros/ros.h>
 #include <gtest/gtest.h>
+#include <sstream>
 #include "LawnMower.h"
-#include <move_base_msgs/MoveBaseAction.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include <actionlib/client/simple_action_client.h>
+#include "NavigationUtils.h"
+#include "std_msgs/String.h"
 
-TEST(LawnMowerTests, test1) {
-  EXPECT_EQ(1, 1);
+/**
+ * @brief Unit test for getIndex, setIndex method
+ * 
+ */
+TEST(LawnMowerTests, test_index_setter_getter) {
+  ros::NodeHandle nh;
+  LawnMower mower_test(nh);
+  EXPECT_TRUE(mower_test.setIndex(2));
+  EXPECT_EQ(2, mower_test.getIndex());
 }
+

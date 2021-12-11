@@ -17,27 +17,28 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * @file NavigationUtils.h
+ * @author Aditi Ramadwar (adiram@umd.edu)
+ * @author Arunava Basu (arunava@umd.edu)
+ * @version 0.1
+ * @date 2021-12-11
  */
 #ifndef INCLUDE_NAVIGATIONUTILS_H_
 #define INCLUDE_NAVIGATIONUTILS_H_
 
-#include <move_base_msgs/MoveBaseAction.h>
-#include <actionlib/client/simple_action_client.h>
 #include <tf2/LinearMath/Quaternion.h>
+#include <move_base_msgs/MoveBaseAction.h>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <actionlib/client/simple_action_client.h>
 #include <string>
-#include <sstream>
 #include <vector>
+#include <sstream>
+#include <fstream>
+#include <iostream>
 #include "ros/ros.h"
 
 class NavigationUtils {
  public:
-    /**
-     * @brief Get the Current Location of the lawn mower
-     * 
-     * @return std::vector<double> 
-     */
-    std::vector<double> getCurrentLocation();
     /**
      * @brief Set the Desired Goal 
      * 
@@ -47,6 +48,7 @@ class NavigationUtils {
      */
     void setDesiredGoal(move_base_msgs::MoveBaseGoal& goal,
     std::vector<double> position, geometry_msgs::Quaternion& qMsg);
+
     /**
      * @brief Send the goal to the move_base server
      * 
@@ -56,6 +58,7 @@ class NavigationUtils {
     bool sendGoal(move_base_msgs::MoveBaseGoal& goal,
     actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
     actionClient);
+
     /**
      * @brief generates a quaternion from r p y 
      * and returns it as a geometry message
@@ -64,23 +67,24 @@ class NavigationUtils {
      * @return geometry_msgs::Quaternion 
      */
     geometry_msgs::Quaternion convertToQuaternion(double theta);
+
     /**
      * @brief Checks if the goal has been reached
      * 
      * @param actionClient 
-     * @return true 
-     * @return false 
+     * @return bool
      */
     bool checkGoalReach(actionlib::SimpleActionClient
     <move_base_msgs::MoveBaseAction>& actionClient);
+
     /**
      * @brief An emergency stop to halt the robot
      * 
-     * @return true 
-     * @return false 
+     * @return bool
      */
     bool emergencyStop(actionlib::SimpleActionClient
     <move_base_msgs::MoveBaseAction>& actionClient);
+
     /**
      * @brief Get the position and yaw values 
      * of each waypoint from a file
@@ -89,18 +93,31 @@ class NavigationUtils {
      * @return std::vector<std::vector<double>> 
      */
     std::vector<std::vector<double>>  getPointsFromFile(std::string path);
+
     /**
      * @brief Send goal as home position
      * 
      * @param actionClient 
-     * @return true 
-     * @return false 
+     * @return bool flag 
      */
-    bool returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient);
-    bool checkTrajectoryCompletion(std::vector<bool>& success_flags, std::vector<std::vector<double>>& dummy_pos);
+    bool returnToHome(move_base_msgs::MoveBaseGoal& home,
+    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
+    actionClient);
+
+    /**
+     * @brief Check if all the points in the trajectory 
+     *        were reached by the robot
+     * 
+     * @param success_flags Vector of all the success flags
+     * @param dummy_pos vector of the trajectory points
+     * @return bool flag to check 
+     */
+    bool checkTrajectoryCompletion(std::vector<bool>& success_flags,
+    std::vector<std::vector<double>>& dummy_pos);
+
  private:
-	std::vector<double> goal_position = {0,0};
-	bool success_status = false;
-	bool emergency_stop = false;
+    std::vector<double> goal_position = {0, 0};
+    bool success_status = false;
+    bool emergency_stop = false;
 };
 #endif  // INCLUDE_NAVIGATIONUTILS_H_
