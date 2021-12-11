@@ -97,7 +97,7 @@ class NavigationUtils {
      * @return false 
      */
     bool returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient);
-    bool checkTrajectoryCompletion(std::vector<bool> success_flags, std::vector<std::vector<double>> dummy_pos);
+    bool checkTrajectoryCompletion(std::vector<bool>& success_flags, std::vector<std::vector<double>>& dummy_pos);
  private:
 	std::vector<double> goal_position = {0,0};
 	bool success_status = false;

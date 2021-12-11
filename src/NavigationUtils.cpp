@@ -170,6 +170,10 @@ bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib
   bool success_flag = checkGoalReach(actionClient);
   return success_flag;
 }
-bool checkTrajectoryCompletion(std::vector<bool> success_flags, std::vector<std::vector<double>> dummy_pos) {
-  
+bool NavigationUtils::checkTrajectoryCompletion(std::vector<bool>& success_flags, std::vector<std::vector<double>>& dummy_pos) {
+  if (success_flags.size() == dummy_pos.size()) {
+    return true;
+  } else {
+    return false;
+  }
 }

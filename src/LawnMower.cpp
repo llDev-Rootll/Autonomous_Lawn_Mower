@@ -77,6 +77,9 @@ void LawnMower::start(const std_msgs::String::ConstPtr& msg) {
             }
         }
     }
+    if (navUtils.checkTrajectoryCompletion(success_flags, dummy_pos)) {
+      ROS_INFO_STREAM("TRAJECTORY COMPLETED");
+    }
 }
 
 /**
