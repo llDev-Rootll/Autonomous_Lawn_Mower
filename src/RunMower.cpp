@@ -18,23 +18,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-#include <ros/ros.h>
-#include <gtest/gtest.h>
-#include <sstream>
+#include <move_base_msgs/MoveBaseAction.h>
+#include <actionlib/client/simple_action_client.h>
+#include "ros/ros.h"
 #include "LawnMower.h"
-#include "NavigationUtils.h"
-#include "std_msgs/String.h"
-// #include <move_base_msgs/MoveBaseAction.h>
-// #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-// #include <actionlib/client/simple_action_client.h>
 
-TEST(LawnMowerTests, test1) {
-  std::string path =
-  "../data/waypoints_test.csv";
-  ROS_INFO_STREAM("Starting LawnMower...");
-  NavigationUtils nav_test;
-  ros::NodeHandle nh;
-  LawnMower mower_test(nh);
-  EXPECT_TRUE(mower_test.setIndex(2));
-  EXPECT_EQ(2,mower_test.getIndex());
+/**
+ * @brief main function which creates a 
+ * new node handle and starts execution
+ * 
+ * @param argc 
+ * @param argv 
+ * @return int 
+ */
+int main(int argc, char **argv) {
+  ros::init(argc, argv, "alm");
+  ros::NodeHandle ros_node_h;
+  std::string path = "/home/aditi/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints.csv";
+  ROS_INFO_STREAM("Starting LawnMower... ");
+  LawnMower mower(ros_node_h);
+  mower.mow(path);
+  return 0;
 }

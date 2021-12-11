@@ -37,14 +37,14 @@ class LawnMower {
      * @param n - node handle
      * @param path - path to waypoints file
      */
-    explicit LawnMower(ros::NodeHandle n, std::string path);
+    explicit LawnMower(ros::NodeHandle n);
 
     /**
      * @brief main function which starts the 
      * mowing routine by following the waypoints
      * 
      */
-     void mow();
+     void mow(std::string path);
 
      /**
       * @brief Callback function for UI interrupt to start the 

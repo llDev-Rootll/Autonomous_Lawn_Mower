@@ -150,7 +150,9 @@ void LawnMower::resume(const std_msgs::String::ConstPtr& msg) {
  * starts the lawn mowing routine
  * 
  */
-void LawnMower::mow() {
+void LawnMower::mow(std::string path) {
+  NavigationUtils navUtils;
+  dummy_pos = navUtils.getPointsFromFile(path);
   ros::Subscriber sub_start = node_h.subscribe("alm_start",
   1000, &LawnMower::start, this);
   ros::Subscriber sub_e_stop = node_h.subscribe("alm_e_stop",
@@ -172,11 +174,8 @@ void LawnMower::mow() {
  * @param n 
  * @param path 
  */
-
-LawnMower::LawnMower(ros::NodeHandle n,
-std::string path) : actionClient("move_base", true), flag("") {
+LawnMower::LawnMower(ros::NodeHandle n) : actionClient("move_base", true), flag("") {
   node_h = n;
-  path_to_waypoints = path;
   home.target_pose.header.frame_id = "map";
   home.target_pose.header.stamp = ros::Time::now();
   home.target_pose.pose.position.x = 0.0145;
@@ -185,29 +184,7 @@ std::string path) : actionClient("move_base", true), flag("") {
   home.target_pose.pose.orientation.y = 0;
   home.target_pose.pose.orientation.z = 0.00632866717679;
   home.target_pose.pose.orientation.w = 0.999979973785;
-  NavigationUtils navUtils;
-  dummy_pos = navUtils.getPointsFromFile(path);
   
   // {{0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, -90}, {0.4, 0, 0}, {0, 0, -90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, 90}, {0.4, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}}
   ros::spinOnce();
-}
-
-/**
- * @brief main function which creates a 
- * new node handle and starts execution
- * 
- * @param argc 
- * @param argv 
- * @return int 
- */
-int main(int argc, char **argv) {
-  ros::init(argc, argv, "alm");
-  ros::NodeHandle ros_node_h;
-  std::string path = "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints.csv";
-  ROS_INFO_STREAM("Starting LawnMower... ");
-  LawnMower mower(ros_node_h, path);
-
-  mower.mow();
-  
-  return 0;
 }
