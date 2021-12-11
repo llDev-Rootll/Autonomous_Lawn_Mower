@@ -32,6 +32,6 @@ TEST(LawnMowerTests, test_index_setter_getter) {
   ros::NodeHandle nh;
   LawnMower mower_test(nh);
   EXPECT_TRUE(mower_test.setIndex(2));
-  EXPECT_EQ(2,mower_test.getIndex());
+  EXPECT_EQ(2, mower_test.getIndex());
 }
 

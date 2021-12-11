@@ -176,7 +176,8 @@ void LawnMower::mow(std::string path) {
  * @param n 
  * @param path 
  */
-LawnMower::LawnMower(ros::NodeHandle n) : actionClient("move_base", true), flag("") {
+LawnMower::LawnMower(ros::NodeHandle n):
+actionClient("move_base", true), flag("") {
   node_h = n;
   home.target_pose.header.frame_id = "map";
   home.target_pose.header.stamp = ros::Time::now();

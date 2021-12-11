@@ -26,16 +26,16 @@
 #ifndef INCLUDE_NAVIGATIONUTILS_H_
 #define INCLUDE_NAVIGATIONUTILS_H_
 
+#include <tf2/LinearMath/Quaternion.h>
+#include <move_base_msgs/MoveBaseAction.h>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
+#include <actionlib/client/simple_action_client.h>
 #include <string>
 #include <vector>
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include "ros/ros.h"
-#include <tf2/LinearMath/Quaternion.h>
-#include <move_base_msgs/MoveBaseAction.h>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.h>
-#include <actionlib/client/simple_action_client.h>
 
 class NavigationUtils {
  public:
@@ -101,7 +101,8 @@ class NavigationUtils {
      * @return bool flag 
      */
     bool returnToHome(move_base_msgs::MoveBaseGoal& home,
-    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient);
+    actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>&
+    actionClient);
 
     /**
      * @brief Check if all the points in the trajectory 
