@@ -112,6 +112,49 @@ bool NavigationUtils::emergencyStop(actionlib::SimpleActionClient
  */
 std::vector<std::vector<double>>
 NavigationUtils::getPointsFromFile(std::string path) {
+  std::fstream fin;
+
+
+  fin.open(path);
+
+  ROS_INFO_STREAM(path);
+  // Read the Data from the file
+  // as String Vector
+  std::vector<std::vector<double>> v_temp;
+  std::string line, word, temp;
+  
+  while (std::getline(fin, line)) {
+    
+      int i=0;
+      std::vector<double> tmp;
+
+      // read an entire row and
+      // store it in a string variable 'line'
+      // getline(fin, line);
+
+      // // used for breaking words
+      // std::stringstream s(line);
+
+      // read every column data of a row and
+      // store it in a string variable, 'word'
+      std::stringstream s(line);
+
+      while (std::getline(s, word, ',')) {
+          i=i+1;
+          if (i==3) {
+            double val = std::stod(word);
+            tmp.push_back(val);
+            v_temp.push_back(tmp);
+            break;
+          }
+          double val = std::stod(word);
+          tmp.push_back(val);
+
+      }
+  }
+
+
+return v_temp;
 }
 /**
  * @brief Function which sends the goal as the home position
@@ -124,4 +167,9 @@ NavigationUtils::getPointsFromFile(std::string path) {
 bool NavigationUtils::returnToHome(move_base_msgs::MoveBaseGoal& home, actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>& actionClient) {
 
   sendGoal(home, actionClient);
+  bool success_flag = checkGoalReach(actionClient);
+  return success_flag;
+}
+bool checkTrajectoryCompletion(std::vector<bool> success_flags, std::vector<std::vector<double>> dummy_pos) {
+  
 }

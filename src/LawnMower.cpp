@@ -41,9 +41,6 @@ void LawnMower::start(const std_msgs::String::ConstPtr& msg) {
     }
     NavigationUtils navUtils;
     geometry_msgs::Quaternion qMsg;
-    // Dummy trajectory to test waypoint navigation
-    std::vector<std::vector<double>> dummy_pos = {{0.5, 0, 0},
-    {0.5, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0} };
     std::vector<double> element;
     for (int i=getIndex(); i < dummy_pos.size(); i++) {
         // Emergency stop
@@ -62,7 +59,7 @@ void LawnMower::start(const std_msgs::String::ConstPtr& msg) {
                 // send the goal message
                 navUtils.sendGoal(goal, actionClient);
                 // record the status flag
-                bool success_flag = navUtils.checkGoalReach(actionClient);
+                success_flags.push_back(navUtils.checkGoalReach(actionClient));
             } else {
                 ROS_WARN("Connection to server failed!");
                 break;
@@ -185,6 +182,10 @@ std::string path) : actionClient("move_base", true), flag("") {
   home.target_pose.pose.orientation.y = 0;
   home.target_pose.pose.orientation.z = 0.00632866717679;
   home.target_pose.pose.orientation.w = 0.999979973785;
+  NavigationUtils navUtils;
+  dummy_pos = navUtils.getPointsFromFile(path);
+  
+  // {{0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, -90}, {0.4, 0, 0}, {0, 0, -90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0, 0, 90}, {0.4, 0, 0}, {0, 0, 90}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}, {0.5, 0, 0}}
   ros::spinOnce();
 }
 
@@ -199,9 +200,11 @@ std::string path) : actionClient("move_base", true), flag("") {
 int main(int argc, char **argv) {
   ros::init(argc, argv, "alm");
   ros::NodeHandle ros_node_h;
-  std::string path = "../data/waypoints.txt";
+  std::string path = "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints.csv";
   ROS_INFO_STREAM("Starting LawnMower... ");
   LawnMower mower(ros_node_h, path);
+
   mower.mow();
+  
   return 0;
 }

@@ -111,5 +111,8 @@ class LawnMower {
     std::string flag;
     int paused_index = 0;
     bool pause_flag = false;
+    std::vector<std::vector<double>> dummy_pos;
+    std::vector<bool> success_flags;
+    
 };
 #endif  // INCLUDE_LAWNMOWER_H_
