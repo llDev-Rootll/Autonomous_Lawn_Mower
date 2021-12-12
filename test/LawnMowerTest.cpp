@@ -36,3 +36,19 @@ TEST(LawnMowerTests, test_index_setter_getter) {
   EXPECT_EQ(2, mower_test.getIndex());
 }
 
+TEST(LawnMowerTests, test_mowing_functionality) {
+ 
+  ros::NodeHandle ros_node_h;
+  std::string path = "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints_test.csv";
+  NavigationUtils navUtils;
+  LawnMower mower(ros_node_h);
+  mower.dummy_pos = navUtils.getPointsFromFile(path);
+  std_msgs::String msg;
+  std::stringstream ss;
+  ss << "lolwa";
+  msg.data = ss.str();
+  mower.start(msg);
+  EXPECT_TRUE(true);
+
+}
+

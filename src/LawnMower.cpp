@@ -31,9 +31,9 @@
  * 
  * @param msg Data containing UI information
  */
-void LawnMower::start(const std_msgs::String::ConstPtr& msg) {
+void LawnMower::start(const std_msgs::String& msg) {
     ROS_DEBUG_STREAM("Successfully received command");
-    std::string command = msg->data.c_str();
+    std::string command = msg.data;
     ROS_INFO_STREAM("UI Message heard : " << command);
     move_base_msgs::MoveBaseGoal goal;
     // MoveBaseClient actionClient("move_base", true);
@@ -144,7 +144,11 @@ void LawnMower::resume(const std_msgs::String::ConstPtr& msg) {
   std::string command = msg->data.c_str();
   ROS_INFO_STREAM("UI Message heard : " << command);
   pause_flag = false;
-  start(msg);
+  std_msgs::String m;
+  std::stringstream ss;
+  ss << "resume";
+  m.data = ss.str();
+  start(m);
 }
 
 /**

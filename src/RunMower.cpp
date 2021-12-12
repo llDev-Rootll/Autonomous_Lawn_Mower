@@ -40,7 +40,7 @@ int main(int argc, char **argv) {
   ros::init(argc, argv, "alm");
   ros::NodeHandle ros_node_h;
   std::string path =
-  "/home/aditi/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints.csv";
+  "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints.csv";
   ROS_INFO_STREAM("Starting LawnMower... ");
   LawnMower mower(ros_node_h);
   mower.mow(path);

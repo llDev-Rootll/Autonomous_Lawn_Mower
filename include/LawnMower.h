@@ -57,7 +57,7 @@ class LawnMower {
       * 
       * @param msg Data containing UI information
       */
-     void start(const std_msgs::String::ConstPtr& msg);
+     void start(const std_msgs::String& msg);
 
      /**
       * @brief Callback function for UI interrupt instantly
@@ -97,6 +97,7 @@ class LawnMower {
       * @return int index of trajectory vector
       */
      int getIndex();
+     std::vector<std::vector<double>> dummy_pos;
 
  private:
     /**
@@ -116,7 +117,7 @@ class LawnMower {
     std::string flag;
     int paused_index = 0;
     bool pause_flag = false;
-    std::vector<std::vector<double>> dummy_pos;
+    
     std::vector<bool> success_flags;
 };
 #endif  // INCLUDE_LAWNMOWER_H_
