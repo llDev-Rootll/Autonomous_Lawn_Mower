@@ -45,7 +45,7 @@ TEST(LawnMowerTests, test_mowing_functionality) {
   mower.dummy_pos = navUtils.getPointsFromFile(path);
   std_msgs::String msg;
   std::stringstream ss;
-  ss << "lolwa";
+  ss << "start";
   msg.data = ss.str();
   mower.start(msg);
   EXPECT_TRUE(true);
