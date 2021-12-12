@@ -17,13 +17,17 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * 
+ * @file LawnMowerTest.cpp
+ * @author Aditi Ramadwar (adiram@umd.edu)
+ * @author Arunava Basu (arunava@umd.edu)
+ * @version 0.1
+ * @date 2021-12-11
+ * 
+ * @copyright Copyright (c) 2021
  */
-#include <ros/ros.h>
 #include <gtest/gtest.h>
-#include <sstream>
 #include "LawnMower.h"
-#include "NavigationUtils.h"
-#include "std_msgs/String.h"
 
 /**
  * @brief Unit test for getIndex, setIndex method
@@ -37,9 +41,9 @@ TEST(LawnMowerTests, test_index_setter_getter) {
 }
 
 TEST(LawnMowerTests, test_mowing_functionality) {
- 
   ros::NodeHandle ros_node_h;
-  std::string path = "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints_test.csv";
+  std::string path =
+  "/home/dev_root/catkin_ws/src/Autonomous_Lawn_Mower/data/waypoints_test.csv";
   NavigationUtils navUtils;
   LawnMower mower(ros_node_h);
   mower.dummy_pos = navUtils.getPointsFromFile(path);
@@ -49,6 +53,7 @@ TEST(LawnMowerTests, test_mowing_functionality) {
   msg.data = ss.str();
   mower.start(msg);
 
-  EXPECT_TRUE(navUtils.checkTrajectoryCompletion(mower.success_flags, mower.dummy_pos);
+  EXPECT_TRUE(navUtils.checkTrajectoryCompletion(mower.success_flags,
+  mower.dummy_pos));
 }
 

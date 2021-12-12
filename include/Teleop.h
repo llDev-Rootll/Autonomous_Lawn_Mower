@@ -22,6 +22,8 @@
  * @author Arunava Basu (arunava@umd.edu)
  * @version 0.1
  * @date 2021-12-11
+ * 
+ * @copyright Copyright (c) 2021
  */
 #ifndef INCLUDE_TELEOP_H_
 #define INCLUDE_TELEOP_H_

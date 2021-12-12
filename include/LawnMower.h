@@ -25,9 +25,7 @@
  */
 #ifndef INCLUDE_LAWNMOWER_H_
 #define INCLUDE_LAWNMOWER_H_
-#include <string>
-#include <vector>
-#include "std_msgs/String.h"
+
 #include <NavigationUtils.h>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>

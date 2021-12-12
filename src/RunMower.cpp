@@ -22,10 +22,9 @@
  * @author Arunava Basu (arunava@umd.edu)
  * @version 0.1
  * @date 2021-12-11
+ * 
+ * @copyright Copyright (c) 2021
  */
-#include <move_base_msgs/MoveBaseAction.h>
-#include <actionlib/client/simple_action_client.h>
-#include "ros/ros.h"
 #include "LawnMower.h"
 
 /**
