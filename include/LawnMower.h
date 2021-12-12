@@ -98,6 +98,7 @@ class LawnMower {
       */
      int getIndex();
      std::vector<std::vector<double>> dummy_pos;
+     std::vector<bool> success_flags;
 
  private:
     /**
@@ -118,6 +119,6 @@ class LawnMower {
     int paused_index = 0;
     bool pause_flag = false;
     
-    std::vector<bool> success_flags;
+    
 };
 #endif  // INCLUDE_LAWNMOWER_H_

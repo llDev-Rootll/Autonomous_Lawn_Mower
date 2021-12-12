@@ -48,7 +48,13 @@ TEST(LawnMowerTests, test_mowing_functionality) {
   ss << "start";
   msg.data = ss.str();
   mower.start(msg);
-  EXPECT_TRUE(true);
+  while(true) {
+    if(mower.dummy_pos.size()==mower.success_flags.size()){
+      EXPECT_TRUE(true);
+      break;
+    }
+  }
+  
 
 }
 
