@@ -25,7 +25,8 @@
  */
 #ifndef INCLUDE_LAWNMOWER_H_
 #define INCLUDE_LAWNMOWER_H_
-
+#include <vector>
+#include <string>
 #include <NavigationUtils.h>
 
 typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
@@ -116,7 +117,5 @@ class LawnMower {
     std::string flag;
     int paused_index = 0;
     bool pause_flag = false;
-    
-    
 };
 #endif  // INCLUDE_LAWNMOWER_H_
