@@ -116,7 +116,6 @@ class NavigationUtils {
     std::vector<std::vector<double>>& dummy_pos);
 
  private:
-    std::vector<double> goal_position = {0, 0};
     bool success_status = false;
     bool emergency_stop = false;
 };
