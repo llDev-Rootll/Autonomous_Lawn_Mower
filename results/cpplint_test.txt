@@ -1,5 +1,11 @@
 Done processing ./include/LawnMower.h
 Done processing ./include/NavigationUtils.h
+Done processing ./include/Teleop.h
 Done processing ./src/LawnMower.cpp
 Done processing ./src/NavigationUtils.cpp
-Total errors found: 4
+Done processing ./src/RunMower.cpp
+Done processing ./src/Teleop.cpp
+Done processing ./test/LawnMowerTest.cpp
+Done processing ./test/NavigationUtilsTest.cpp
+Done processing ./test/main.cpp
+Total errors found: 8

@@ -4,7 +4,12 @@
   <arg name="map_file" default="$(find alm)/map/my_map.yaml"/>
   <arg name="open_rviz" default="true"/>
   <arg name="move_forward_only" default="false"/>
-  <include file="$(find alm)/launch/launch_in_world.launch"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+  <include file="$(find alm)/launch/launch_in_world.launch">
+    <arg name="gui" value="$(arg gui)"/>
+    <arg name="headless" value="$(arg headless)"/>
+  </include>
   
   <!-- Turtlebot3 -->
   <include file="$(find turtlebot3_bringup)/launch/turtlebot3_remote.launch">

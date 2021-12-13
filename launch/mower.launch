@@ -1,5 +1,7 @@
 
   <launch>
+  <arg name="record" default="false"/>
   <!-- src node -->
   <node name="mower_node" pkg="alm" output = "screen" type="mow"/>
+  <node pkg="rosbag" type="record" name="my_rosbag" output="screen" args="-O $(find alm)/results/ros_bag_pub_sub.bag --duration=15 -a " if="$(arg record)"/>
 </launch>
