@@ -21,6 +21,7 @@
  * @file main.cpp
  * @author Aditi Ramadwar (adiram@umd.edu)
  * @author Arunava Basu (arunava@umd.edu)
+ * @brief The main file for gtest integration
  * @version 0.1
  * @date 2021-12-11
  */

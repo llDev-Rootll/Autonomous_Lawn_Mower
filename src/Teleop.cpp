@@ -20,6 +20,8 @@
  * @file Teleop.cpp
  * @author Aditi Ramadwar (adiram@umd.edu)
  * @author Arunava Basu (arunava@umd.edu)
+ * @brief File for publishing messages corresponding to the key triggered on the 
+ *        keyboard.
  * @version 0.1
  * @date 2021-12-11
  * 

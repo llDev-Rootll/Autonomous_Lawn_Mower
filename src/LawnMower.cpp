@@ -20,6 +20,8 @@
  * @file LawnMower.cpp
  * @author Aditi Ramadwar (adiram@umd.edu)
  * @author Arunava Basu (arunava@umd.edu)
+ * @brief Class for subscribing to the UI and performing respective tasks
+ *        The trajectory points are followed using the NavigationUtils Class
  * @version 0.1
  * @date 2021-12-11
  * 

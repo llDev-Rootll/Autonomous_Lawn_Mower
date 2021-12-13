@@ -20,6 +20,7 @@
  * @file NavigationUtils.h
  * @author Aditi Ramadwar (adiram@umd.edu)
  * @author Arunava Basu (arunava@umd.edu)
+ * @brief Header file for class for performing all the utility functions for navigation
  * @version 0.1
  * @date 2021-12-11
  */
