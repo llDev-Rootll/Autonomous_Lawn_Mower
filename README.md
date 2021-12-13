@@ -114,6 +114,13 @@ or
 
     roslaunch alm test.launch
 
+## Running cpplint & cppcheck tests
+Run the following command in the root directory to generate cpplint results in **results** folder
+ 
+    sh run_cpplint.sh
+Run the following command in the root directory to generate cppcheck results in **results** folder
+
+    sh run_cppcheck.sh
 ## Phase 1
 
  - Final Proposal has been updated with the suggestion made from the last phase
