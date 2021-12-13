@@ -35,6 +35,7 @@ The Agile Iterative Process will be used for the development of this system cons
 
 The following shows the activity diagram for our proposed schema :
 <img  alt="activity"  src="assets/activity_diag.png"  width="75%" /> 
+
 *Fig 1 : Activity Diagram*
 
 The corresponding class diagram can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/UML/Revised/Revised_Class_Diagram.pdf).
@@ -72,6 +73,7 @@ roslaunch alm spawn.launch
 ```
 This spawns the turtlebot3 simulation in the custom world environment on the green lawn.
 <img  alt="world_gazebo"  src="assets/world_gazebo.png"  width="75%" /> 
+
 *Fig 2 : Spawn the robot in the world*
 
 2. In a second terminal run the following to bring up the mowing routine node:
@@ -87,6 +89,7 @@ source devel/setup.bash
 roslaunch alm teleop_alm.launch
 ```
 <img  alt="world_rviz"  src="assets/world_rviz.png"  width="75%" /> 
+
 *Fig 3 : RVIZ visualisation*
 
 ### User Interface commands to control the robot
@@ -95,7 +98,8 @@ roslaunch alm teleop_alm.launch
 2. Press 'p' key to pause the robot after it reaches the next desired trajectory point.
 3. Press 'r' key to resume the trajectory tracking from the point where it was paused.
 4. Press 'e' key to stop the robot immediately in case of a critical issue.
-<img  alt="UI on terminal"  src="assets/UI.png"  width="75%" /> 
+<img  alt="UI on terminal"  src="assets/UI.png"  width="75%" />
+ 
 *Fig 4: Launch the User Interface to control the robot*
 
 ### Rosbag functionality
@@ -112,11 +116,7 @@ To run the test cases, terminate the above three processes and run the following
 
     catkin_make tests
     catkin_make test
-or
-
-  
-
-      
+or  
     
     roslaunch alm test.launch
 A unit test to check the mowing functionality has been implemented which feeds a test waypoint file and checks for the number of successful points navigated.
