@@ -1,4 +1,5 @@
 
+  
 # Autonomous Lawn Mower - ALM
 
 [![Build Status](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower.svg?branch=master)](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower)
@@ -132,6 +133,15 @@ Run the following command in the root directory to generate cpplint results in *
 Run the following command in the root directory to generate cppcheck results in **results** folder
 
     sh run_cppcheck.sh
+  ## Doxygen Documentation
+
+
+To generate the doxygen documents:
+```
+doxygen doxy_config
+```
+
+The documents are generated in `./docs` folder.
 ## Phase 1
 - Final Proposal has been updated with the suggestion made from the last phase
 - The github repo, travi-ci, and coveralls has been linked.
