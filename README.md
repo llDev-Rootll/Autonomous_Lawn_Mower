@@ -20,33 +20,38 @@ Our system is built using C++ and will leverage the ROS Navigation stack for per
 ## Project Collaterals
 The Agile Iterative Process will be used for the development of this system consisting of two sprints.
 
-The project proposal can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Autonomous_Lawn_Mower-Proposal.pdf).
-
-The quad chart can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Quad_Chart.pdf).
-
-The overall backlog table and the tables for each sprints can be found [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1860513107).
-
-The sprint planning notes can be found [here](https://docs.google.com/document/d/1wy9xlAPdjao29AV2lVo_EQJV9MCoEYegYT7aFkh7owY/edit).
-
+1. The project proposal can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Autonomous_Lawn_Mower-Proposal.pdf).
+2. The quad chart can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/assets/Quad_Chart.pdf).
+3. The overall backlog table and the tables for each sprints can be found [here](https://docs.google.com/spreadsheets/d/1cmejfr571rCQcNI3y2g41rq-KDfKz_WwcTCoZqvluJA/edit?usp=sharing).
+4. The sprint planning notes can be found [here](https://docs.google.com/document/d/1wy9xlAPdjao29AV2lVo_EQJV9MCoEYegYT7aFkh7owY/edit).
+5. The technical presentation slides can be found [here](https://docs.google.com/presentation/d/1gZXX1ICoL5XFpE4DEvGhv8NeWR12lm7TbL0wqJqIlRo/edit?usp=sharing)
+6. The demo video of the package is linked [here]()
 
 ## System Architecture 
 The following shows the activity diagram for our proposed schema : 
 
-<img alt="activity" src="assets/activity_diag.png" width="50%" />
+<img alt="activity" src="assets/activity_diag.png" width="75%" />
 
 *Fig 1 :  Activity Diagram*
 
 The corresponding class diagram can be found [here](https://github.com/llDev-Rootll/Autonomous_Lawn_Mower/blob/master/UML/Revised/Revised_Class_Diagram.pdf).
-## Steps to install dependencies
+## Dependencies
+- ROS Melodic : installation instructions [here](http://wiki.ros.org/melodic/Installation/Ubuntu)
+- Ubuntu 18.04
+- C++ Version 14+
+- cmake minimum version 3.0.2
+- turtlebot3 packages
+### Steps to install dependencies
 Run the following commands to install the dependencies required:
-
-Installing the ROS navigation stack:
-
+1. Installing the ROS navigation stack:
+```
     sudo apt-get install ros-melodic-navigation
-Installing the turtlebot3 dependencies:
-
+```
+2. Installing the turtlebot3 dependencies:
+```
     sudo apt-get install ros-melodic-turtlebot3 ros-melodic-turtlebot3-msgs ros-melodic-turtlebot3-navigation ros-melodic-turtlebot3-simulations 
-## Steps to install the ALM package
+```
+## Install the ALM package
 
   Make a catkin workspace catkin_ws and run the following commands :
   
@@ -90,7 +95,14 @@ roslaunch alm teleop_alm.launch
 <img alt="UI on terminal" src="assets/UI.png" width="75%" />
 
 *Fig 4: Launch the User Interface to control the robot*
+### Rosbag functionality
+By default the rosbag recording is _disabled_, to enable the recording, run this:
 
+    roslaunch alm mower.launch record:=true
+Inspecting the recorded rosbag file: stop the launch file and run this,
+```
+rosbag info results/ros_bag_pub_sub.bag
+```
 
 ## Unit Testing
 Unit Testing is used to test each submodule and ensure complete code coverage. For this Google test (gtest) has been leveraged and identical test classes and methods are created with minimal modification in order to facilitate testing. 
@@ -108,7 +120,7 @@ or
  - The github repo, travi-ci, and coveralls has been linked.
  - Quad chart, UMLs, Backlog Tables, and Sprint Planning sheet has been added.
 
- Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=241005242), for an exhaustive list of tasks completed in Phase 1.
+ Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1cmejfr571rCQcNI3y2g41rq-KDfKz_WwcTCoZqvluJA/edit#gid=241005242), for an exhaustive list of tasks completed in Phase 1.
 ## Phase 2
 
  - The ROS package for autonomous lawn mowing was created
@@ -120,7 +132,7 @@ or
  - Unit test case to check the quaternion conversion has been written
  - Launch files to spawn the simulation, run the lawn mowing node and the unit tests have been written
  
- Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1503816755), for an exhaustive list of tasks completed in Phase 2.
+ Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1cmejfr571rCQcNI3y2g41rq-KDfKz_WwcTCoZqvluJA/edit#gid=1503816755), for an exhaustive list of tasks completed in Phase 2.
 
 ## Phase 3
 - Methods for trajectory tracking verification were developed.
@@ -130,4 +142,4 @@ or
 - Designed the unit test structure of each class and developed unit testing for functionalities.
 - UMLs were revised according to the appropriate changes made.
  
-Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1318424670), for an exhaustive list of tasks completed in Phase 3.
+Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1cmejfr571rCQcNI3y2g41rq-KDfKz_WwcTCoZqvluJA/edit#gid=1285958998), for an exhaustive list of tasks completed in Phase 3.
