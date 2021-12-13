@@ -1,6 +1,3 @@
-
-  
-  
 # Autonomous Lawn Mower - ALM
 [![Build Status](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower.svg?branch=master)](https://app.travis-ci.com/llDev-Rootll/Autonomous_Lawn_Mower)
 [![Coverage Status](https://coveralls.io/repos/github/llDev-Rootll/Autonomous_Lawn_Mower/badge.svg?branch=master)](https://coveralls.io/github/llDev-Rootll/Autonomous_Lawn_Mower?branch=master)
@@ -53,31 +50,57 @@ Installing the turtlebot3 dependencies:
 
   Make a catkin workspace catkin_ws and run the following commands :
   
-
     cd <path_to_ws>/catkin_ws/src
-    git clone https://github.com/llDev-Rootll/beginner_tutorials.git
+    git clone https://github.com/aditiramadwar/Autonomous_Lawn_Mower.git
     cd ../
     catkin_make
 ## Steps to run the simulation using the launch file
-In a terminal run :
-
-    source devel/setup.bash
-    roslaunch alm spawn.launch 
+1. In one terminal run :
+```
+source devel/setup.bash
+roslaunch alm spawn.launch 
+```
 This spawns the turtlebot3 simulation in the custom world environment on the green lawn.
 
 <img alt="world_gazebo" src="assets/world_gazebo.png" width="75%" />
 
-*Fig 1 : Spawn the robot in the world*
+*Fig 2 : Spawn the robot in the world*
 
-In a terminal run the following to bring up the mowing routine node:
-
-    source devel/setup.bash
-    roslaunch alm mower.launch
+2. In a second terminal run the following to bring up the mowing routine node:
+```
+source devel/setup.bash
+roslaunch alm mower.launch
+```
 This executes the lawn mowing simulation and bring up rviz for visualization of the different parameters.
 
+3. In a third terminal run the following to start up the UI Node on the terminal:
+```
+source devel/setup.bash
+roslaunch alm teleop_alm.launch
+```
 <img alt="world_rviz" src="assets/world_rviz.png" width="75%" />
 
-*Fig 1 : RVIZ visualisation*
+*Fig 3 : RVIZ visualisation*
+### User Interface commands to control the robot
+1. Press 's' key to start the entire trajectory tracking
+2. Press 'p' key to pause the robot after it reaches the next desired trajectory point.
+3. Press 'r' key to resume the trajectory tracking from the point where it was paused.
+4. Press 'e' key to stop the robot immediately in case of a critical issue.
+
+<img alt="UI on terminal" src="assets/UI.png" width="75%" />
+
+*Fig 4: Launch the User Interface to control the robot*
+
+
+## Unit Testing
+Unit Testing is used to test each submodule and ensure complete code coverage. For this Google test (gtest) has been leveraged and identical test classes and methods are created with minimal modification in order to facilitate testing. 
+To run the test cases, terminate the above three processes and run the following in a new terminal:
+
+    catkin_make tests
+    catkin_make test
+or
+
+    roslaunch alm test.launch
 
 ## Phase 1
 
@@ -97,11 +120,14 @@ This executes the lawn mowing simulation and bring up rviz for visualization of 
  - Unit test case to check the quaternion conversion has been written
  - Launch files to spawn the simulation, run the lawn mowing node and the unit tests have been written
  
- Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=241005242), for an exhaustive list of tasks completed in Phase 2.
-## To Do
+ Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1503816755), for an exhaustive list of tasks completed in Phase 2.
 
- - Implement a proper trajectory for optimal mowing of the lawn
- - Implement remaining functions 
- - Write unit tests for other modules
- - Find alternative or best available method for running CI on travis and code coverage on coveralls
+## Phase 3
+- Methods for trajectory tracking verification were developed.
+- Methods for functionality of robot to come back to initial position after trajectory tracking were implemented.
+- UI interface was developed and was integrated with the main functionality of the robot.
+- Final trajectory was developed for the navigation of robot on the lawn.
+- Designed the unit test structure of each class and developed unit testing for functionalities.
+- UMLs were revised according to the appropriate changes made.
  
+Please refer to the backlog table, [here](https://docs.google.com/spreadsheets/d/1WAa7oFD4pA2sujA1pLWYuytpL0tj46f_C2mvmyDHtKc/edit#gid=1318424670), for an exhaustive list of tasks completed in Phase 3.
