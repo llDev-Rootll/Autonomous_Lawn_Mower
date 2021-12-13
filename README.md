@@ -114,6 +114,7 @@ or
 
     roslaunch alm test.launch
 
+A unit test to check the mowing functionality has been implemented which feeds a test waypoint file and checks for the number of successful points navigated.
 ## Running cpplint & cppcheck tests
 Run the following command in the root directory to generate cpplint results in **results** folder
  

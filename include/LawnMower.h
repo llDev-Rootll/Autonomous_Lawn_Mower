@@ -66,7 +66,7 @@ class LawnMower {
       * 
       * @param msg Data containing UI information
       */
-     void e_stop(const std_msgs::String::ConstPtr& msg);
+     void e_stop(const std_msgs::String& msg);
 
      /**
       * @brief Callback function for UI interrupt to pause the 
@@ -74,7 +74,7 @@ class LawnMower {
       * 
       * @param msg Data containing UI information
       */
-     void pause(const std_msgs::String::ConstPtr& msg);
+     void pause(const std_msgs::String& msg);
 
      /**
       * @brief Callback function for UI interrupt to resume the 
@@ -82,7 +82,7 @@ class LawnMower {
       * 
       * @param msg Data containing UI information
       */
-     void resume(const std_msgs::String::ConstPtr& msg);
+     void resume(const std_msgs::String& msg);
 
      /**
       * @brief Set the Index o
@@ -100,6 +100,7 @@ class LawnMower {
      int getIndex();
      std::vector<std::vector<double>> dummy_pos;
      std::vector<bool> success_flags;
+     bool pause_flag = false;
 
  private:
     /**
@@ -118,6 +119,5 @@ class LawnMower {
     std::vector<double> current_goal;
     std::string flag;
     int paused_index = 0;
-    bool pause_flag = false;
 };
 #endif  // INCLUDE_LAWNMOWER_H_

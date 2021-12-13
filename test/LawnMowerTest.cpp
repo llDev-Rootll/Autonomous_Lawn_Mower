@@ -40,7 +40,42 @@ TEST(LawnMowerTests, test_index_setter_getter) {
   EXPECT_TRUE(mower_test.setIndex(2));
   EXPECT_EQ(2, mower_test.getIndex());
 }
+TEST(LawnMowerTests, test_pause) {
+  ros::NodeHandle ros_node_h;
+  LawnMower mower(ros_node_h);
 
+  std_msgs::String msg;
+  std::stringstream ss;
+  ss << "pause";
+  msg.data = ss.str();
+  mower.pause(msg);
+
+  EXPECT_TRUE(mower.pause_flag);
+}
+TEST(LawnMowerTests, test_resume) {
+  ros::NodeHandle ros_node_h;
+  LawnMower mower(ros_node_h);
+
+  std_msgs::String msg;
+  std::stringstream ss;
+  ss << "resume";
+  msg.data = ss.str();
+  mower.resume(msg);
+
+  EXPECT_TRUE(!mower.pause_flag);
+}
+TEST(LawnMowerTests, test_e_stop) {
+  ros::NodeHandle ros_node_h;
+  LawnMower mower(ros_node_h);
+
+  std_msgs::String msg;
+  std::stringstream ss;
+  ss << "e_stop";
+  msg.data = ss.str();
+  mower.e_stop(msg);
+
+  EXPECT_TRUE(!mower.pause_flag);
+}
 TEST(LawnMowerTests, test_mowing_functionality) {
   ros::NodeHandle ros_node_h;
   std::string path =

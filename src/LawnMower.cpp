@@ -114,9 +114,9 @@ int LawnMower::getIndex() {
  * 
  * @param msg Data containing UI information
  */
-void LawnMower::e_stop(const std_msgs::String::ConstPtr& msg) {
+void LawnMower::e_stop(const std_msgs::String& msg) {
   ROS_DEBUG_STREAM("Successfully received command");
-  std::string command = msg->data.c_str();
+  std::string command = msg.data;
   ROS_INFO_STREAM("UI Message heard : " << command);
   NavigationUtils navUtils;
   navUtils.emergencyStop(actionClient);
@@ -130,9 +130,9 @@ void LawnMower::e_stop(const std_msgs::String::ConstPtr& msg) {
  * 
  * @param msg Data containing UI information
  */
-void LawnMower::pause(const std_msgs::String::ConstPtr& msg) {
+void LawnMower::pause(const std_msgs::String& msg) {
   ROS_DEBUG_STREAM("Successfully received command");
-  std::string command = msg->data.c_str();
+  std::string command = msg.data;
   ROS_INFO_STREAM("UI Message heard : " << command);
   pause_flag = true;
 }
@@ -143,9 +143,9 @@ void LawnMower::pause(const std_msgs::String::ConstPtr& msg) {
  * 
  * @param msg Data containing UI information
  */
-void LawnMower::resume(const std_msgs::String::ConstPtr& msg) {
+void LawnMower::resume(const std_msgs::String& msg) {
   ROS_DEBUG_STREAM("Successfully received command");
-  std::string command = msg->data.c_str();
+  std::string command = msg.data;
   ROS_INFO_STREAM("UI Message heard : " << command);
   pause_flag = false;
   std_msgs::String m;
