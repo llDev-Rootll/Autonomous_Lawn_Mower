@@ -17,20 +17,26 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
- * 
- * @file main.cpp
+ * @file Teleop.h
  * @author Aditi Ramadwar (adiram@umd.edu)
  * @author Arunava Basu (arunava@umd.edu)
- * @brief The main file for gtest integration
+ * @brief Header file for publishing messages corresponding to the key triggered on the 
+ *        keyboard.
  * @version 0.1
  * @date 2021-12-11
+ * 
+ * @copyright Copyright (c) 2021
  */
-#include <ros/ros.h>
-#include <gtest/gtest.h>
+#ifndef INCLUDE_TELEOP_H_
+#define INCLUDE_TELEOP_H_
 
-int main(int argc, char** argv) {
-  testing::InitGoogleTest(&argc, argv);
-  ros::init(argc, argv, "test_mow");
-  ros::NodeHandle nh;
-  return RUN_ALL_TESTS();
-}
+#include <ros/ros.h>
+#include <termios.h>
+#include <sstream>
+#include "std_msgs/String.h"
+
+class Teleop {
+ public:
+     int getch();
+};
+#endif  // INCLUDE_TELEOP_H_

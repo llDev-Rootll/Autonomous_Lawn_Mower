@@ -17,14 +17,23 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
+ * @file LawnMower.h
+ * @author Aditi Ramadwar (adiram@umd.edu)
+ * @author Arunava Basu (arunava@umd.edu)
+ * @brief Header file for subscribing to the UI and performing respective tasks
+ *        The trajectory points are followed using the NavigationUtils Class
+ * @version 0.1
+ * @date 2021-12-11
  */
 #ifndef INCLUDE_LAWNMOWER_H_
 #define INCLUDE_LAWNMOWER_H_
-#include <string>
-#include <sstream>
 #include <vector>
-#include "ros/ros.h"
+#include <string>
 #include <NavigationUtils.h>
+
+typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction>
+ MoveBaseClient;
+
 class LawnMower {
  public:
     /**
@@ -34,24 +43,81 @@ class LawnMower {
      * @param n - node handle
      * @param path - path to waypoints file
      */
-    explicit LawnMower(ros::NodeHandle n, std::string path);
+    explicit LawnMower(ros::NodeHandle n);
+
     /**
      * @brief main function which starts the 
      * mowing routine by following the waypoints
      * 
      */
-     void mow();
+     void mow(std::string path);
+
+     /**
+      * @brief Callback function for UI interrupt to start the 
+      *        trajectory tracking of robot
+      * 
+      * @param msg Data containing UI information
+      */
+     void start(const std_msgs::String& msg);
+
+     /**
+      * @brief Callback function for UI interrupt instantly
+      *        stop the robot
+      * 
+      * @param msg Data containing UI information
+      */
+     void e_stop(const std_msgs::String& msg);
+
+     /**
+      * @brief Callback function for UI interrupt to pause the 
+      *        trajectory tracking of robot.
+      * 
+      * @param msg Data containing UI information
+      */
+     void pause(const std_msgs::String& msg);
+
+     /**
+      * @brief Callback function for UI interrupt to resume the 
+      *        trajectory tracking of robot
+      * 
+      * @param msg Data containing UI information
+      */
+     void resume(const std_msgs::String& msg);
+
+     /**
+      * @brief Set the Index o
+      * 
+      * @param i index of the trajectory
+      * @return bool flag for confirmation
+      */
+     bool setIndex(int i);
+
+     /**
+      * @brief Get the Index
+      * 
+      * @return int index of trajectory vector
+      */
+     int getIndex();
+     std::vector<std::vector<double>> dummy_pos;
+     std::vector<bool> success_flags;
+     bool pause_flag = false;
 
  private:
     /**
      * @brief ROS node handle
      * 
      */
+
     ros::NodeHandle node_h;
     /**
      * @brief path to waypoints file
      * 
      */
     std::string path_to_waypoints;
+    move_base_msgs::MoveBaseGoal home;
+    MoveBaseClient actionClient;
+    std::vector<double> current_goal;
+    std::string flag;
+    int paused_index = 0;
 };
 #endif  // INCLUDE_LAWNMOWER_H_
